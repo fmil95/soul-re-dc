@@ -5,7 +5,8 @@
 #   make         - split, build build/1ST_READ.BIN and compare against the original
 
 PYTHON   ?= python3
-GDI      ?= $(firstword $(wildcard *.gdi))
+# Path to the .gdi; if unset, the first *.gdi in the repo root is used (the name may contain spaces).
+GDI      ?=
 DCTOOL   := bash tools/dctool.sh
 NAME     := 1st_read
 TARGET   := build/1ST_READ.BIN
@@ -18,7 +19,11 @@ ASFLAGS  := -little
 all: compare
 
 setup:
-	$(PYTHON) tools/extract_gdi.py "$(GDI)" rom
+	@gdi='$(GDI)'; \
+	if [ -z "$$gdi" ]; then set -- *.gdi; gdi="$$1"; fi; \
+	if [ ! -f "$$gdi" ]; then echo "error: no .gdi found in $$(pwd) (or pass GDI=path)" >&2; exit 1; fi; \
+	echo "$(PYTHON) tools/extract_gdi.py \"$$gdi\" rom"; \
+	$(PYTHON) tools/extract_gdi.py "$$gdi" rom
 	bash tools/setup_toolchain.sh
 
 split: build/$(NAME).ld
