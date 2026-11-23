@@ -1,0 +1,41 @@
+# Segment map for 1ST_READ.BIN (Soul Reaver, NTSC-U v1.000, T36802N, built 1999-12-20)
+# Segments must be contiguous and ordered. `kind`:
+#   bin  - copied verbatim from the ROM (blob, wrapped with tools/bin2elf.py)
+#   asm  - hand-written / generated asm in asm/<name>.s   (future)
+#   c    - compiled from src/<name>.c                      (future)
+# Boundaries come from tools/libmatch.py (KATANA SDK objects located in the binary).
+
+[binary]
+name  = "1ST_READ"
+rom   = "rom/1ST_READ.BIN"
+vram  = 0x8C010000
+size  = 3455844
+sha1  = "92b051a490599e062a19b5cbc4ecab83f26428f3"
+
+# SHC-compiled SDK libraries (Shinobi/Kamui2/CRI/MW sections PSG/CSG/DSG...) + strt1/strt2.
+[[segment]]
+name  = "sdk_shc"
+start = 0x8C010000
+kind  = "bin"
+section = ".sdk_shc"
+
+# Game code, GCC 2.9-SYSDEV -ml -m4-single-only. Nothing from the SDK matches here.
+[[segment]]
+name  = "game_text"
+start = 0x8C05AC20
+kind  = "bin"
+section = ".text"
+
+# GCC-side libraries: audio64, sh4nlfzz, shinobi (gnu parts), libc, libgcc.
+[[segment]]
+name  = "lib_text"
+start = 0x8C12A9E0
+kind  = "bin"
+section = ".text"
+
+# .rodata, .data (game + libraries). .bss is not stored in the file.
+[[segment]]
+name  = "data"
+start = 0x8C138100
+kind  = "bin"
+section = ".data"

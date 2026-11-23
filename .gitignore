@@ -1,0 +1,11 @@
+# Proprietary inputs - never commit
+KATANA/
+*.gdi
+track*.bin
+track*.raw
+rom/
+# Generated
+build/
+asm/
+__pycache__/
+*.pyc
