@@ -1,5 +1,5 @@
 /* DC 8C0EDD60, 5 functions. PSX: src/Game/PLAN/PLANSRCH.c */
-#include "common.h"
+#include "Game/PLAN/PLANSRCH.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLANSRCH", func_8C0EDD60);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLANSRCH", PLANSRCH_FindNodeToExpand);

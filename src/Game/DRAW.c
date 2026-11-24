@@ -1,5 +1,5 @@
 /* DC 8C120CC0, 48 functions. PSX: src/Game/DRAW.c */
-#include "common.h"
+#include "Game/DRAW.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/DRAW", func_8C120CC0);
 INCLUDE_ASM("asm/nonmatchings/Game/DRAW", func_8C120D00);

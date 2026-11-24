@@ -1,5 +1,5 @@
 /* DC 8C0ED2C0, 18 functions. PSX: src/Game/PLAN/PLANPOOL.c */
-#include "common.h"
+#include "Game/PLAN/PLANPOOL.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLANPOOL", PLANPOOL_NumNodesInPlan);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLANPOOL", PLANPOOL_CountBitsSetInLong);

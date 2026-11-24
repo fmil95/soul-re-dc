@@ -1,5 +1,5 @@
 /* DC 8C09F700, 13 functions. PSX: src/Game/REAVER.c */
-#include "common.h"
+#include "Game/REAVER.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/REAVER", func_8C09F700);
 INCLUDE_ASM("asm/nonmatchings/Game/REAVER", SoulReaverInit);

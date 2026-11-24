@@ -1,5 +1,5 @@
 /* DC 8C0B35E0, 7 functions. DC-only (no PSX counterpart found) */
-#include "common.h"
+#include "dc/unk_8C0B35E0.h"
 
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0B35E0", func_8C0B35E0);
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0B35E0", func_8C0B3620);

@@ -1,5 +1,5 @@
 /* DC 8C064140, 47 functions. PSX: src/Game/COLLIDE.c */
-#include "common.h"
+#include "Game/COLLIDE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", func_8C064140);
 INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", COLLIDE_PointInTriangle);

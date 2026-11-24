@@ -1,5 +1,5 @@
 /* DC 8C0778E0, 149 functions. PSX: src/Game/FX.c */
-#include "common.h"
+#include "Game/FX.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/FX", func_8C0778E0);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", func_8C077940);

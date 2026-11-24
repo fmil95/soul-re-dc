@@ -1,5 +1,5 @@
 /* DC 8C111CA0, 39 functions. PSX: src/Overlays/walboss/walboss.c */
-#include "common.h"
+#include "Game/MONSTER/WALBOSS.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/WALBOSS", WALBOSS_SetSegmentYaw);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/WALBOSS", WALBOSS_InterpSegmentYaw);

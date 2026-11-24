@@ -1,5 +1,5 @@
 /* DC 8C10FA60, 10 functions. PSX: src/Game/MONSTER/VWRAITH.c */
-#include "common.h"
+#include "Game/MONSTER/VWRAITH.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/VWRAITH", VWRAITH_MoveVertical);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/VWRAITH", VWRAITH_Init);

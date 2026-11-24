@@ -1,5 +1,5 @@
 /* DC 8C11F660, 19 functions. DC-only (no PSX counterpart found) */
-#include "common.h"
+#include "dc/unk_8C11F660.h"
 
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C11F660", func_8C11F660);
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C11F660", func_8C11F700);

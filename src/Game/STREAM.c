@@ -1,5 +1,5 @@
 /* DC 8C0AB340, 153 functions. PSX: src/Game/STREAM.c */
-#include "common.h"
+#include "Game/STREAM.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/STREAM", STREAM_FillOutFileNames);
 INCLUDE_ASM("asm/nonmatchings/Game/STREAM", STREAM_AbortAreaLoad);

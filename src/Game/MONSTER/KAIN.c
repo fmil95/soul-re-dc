@@ -1,5 +1,5 @@
 /* DC 8C0F56A0, 30 functions. PSX: src/Overlays/kain/kain.c */
-#include "common.h"
+#include "Game/MONSTER/KAIN.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_PickUpReaver);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_FindFarthestMarkerPosition);

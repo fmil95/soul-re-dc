@@ -1,5 +1,5 @@
 /* DC 8C09E020, 18 functions. PSX: src/Game/PIPE3D.c */
-#include "common.h"
+#include "Game/PIPE3D.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PIPE3D", func_8C09E020);
 INCLUDE_ASM("asm/nonmatchings/Game/PIPE3D", PIPE3D_InvertTransform);

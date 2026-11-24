@@ -1,5 +1,5 @@
 /* DC 8C0FA080, 90 functions. PSX: src/Game/MONSTER/MONLIB.c */
-#include "common.h"
+#include "Game/MONSTER/MONLIB.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONLIB", MON_TurnOffWeaponSpheres);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONLIB", MON_TurnOnWeaponSpheres);

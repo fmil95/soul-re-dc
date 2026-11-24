@@ -1,5 +1,5 @@
 /* DC 8C0BB240, 32 functions. PSX: src/Game/PSX/MAIN.c */
-#include "common.h"
+#include "Game/PSX/MAIN.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/MAIN", func_8C0BB240);
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/MAIN", screen_to_vram);

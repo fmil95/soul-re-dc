@@ -1,5 +1,5 @@
 /* DC 8C0E4A00, 5 functions. PSX: src/Game/G2/POOLMMG2.c */
-#include "common.h"
+#include "Game/G2/POOLMMG2.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/G2/POOLMMG2", G2PoolMem_InitPool);
 INCLUDE_ASM("asm/nonmatchings/Game/G2/POOLMMG2", G2PoolMem_ResetPool);

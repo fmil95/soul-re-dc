@@ -1,5 +1,5 @@
 /* DC 8C0B3F60, 14 functions. PSX: src/Game/VOICEXA.c */
-#include "common.h"
+#include "Game/VOICEXA.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/VOICEXA", func_8C0B3F60);
 INCLUDE_ASM("asm/nonmatchings/Game/VOICEXA", func_8C0B3FC0);

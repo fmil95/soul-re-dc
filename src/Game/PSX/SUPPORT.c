@@ -1,5 +1,5 @@
 /* DC 8C0B4400, 9 functions. PSX: src/Game/PSX/SUPPORT.c */
-#include "common.h"
+#include "Game/PSX/SUPPORT.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/SUPPORT", func_8C0B4400);
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/SUPPORT", printf);

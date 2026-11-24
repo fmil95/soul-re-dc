@@ -1,5 +1,5 @@
 /* DC 8C09F560, 7 functions. PSX: src/Game/PLAYER.c */
-#include "common.h"
+#include "Game/PLAYER.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", PLAYER_TurnHead);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", PLAYER_OkToLookAround);

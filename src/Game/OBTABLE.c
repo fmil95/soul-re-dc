@@ -1,5 +1,5 @@
 /* DC 8C0920C0, 14 functions. PSX: src/Game/OBTABLE.c */
-#include "common.h"
+#include "Game/OBTABLE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/OBTABLE", OBTABLE_InstanceInit);
 INCLUDE_ASM("asm/nonmatchings/Game/OBTABLE", OBTABLE_GetInstanceCollideFunc);

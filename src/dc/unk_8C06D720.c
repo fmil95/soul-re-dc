@@ -1,5 +1,5 @@
 /* DC 8C06D720, 13 functions. DC-only (no PSX counterpart found) */
-#include "common.h"
+#include "dc/unk_8C06D720.h"
 
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C06D720", func_8C06D720);
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C06D720", func_8C06D7A0);

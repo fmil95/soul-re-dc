@@ -1,5 +1,5 @@
 /* DC 8C08F520, 9 functions. PSX: src/Game/LIST.c */
-#include "common.h"
+#include "Game/LIST.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/LIST", LIST_InsertFunc);
 INCLUDE_ASM("asm/nonmatchings/Game/LIST", LIST_DeleteFunc);

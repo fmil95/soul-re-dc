@@ -1,5 +1,5 @@
 /* DC 8C118260, 18 functions. PSX: src/Game/LOAD3D.c */
-#include "common.h"
+#include "Game/LOAD3D.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/LOAD3D", func_8C118260);
 INCLUDE_ASM("asm/nonmatchings/Game/LOAD3D", func_8C118300);

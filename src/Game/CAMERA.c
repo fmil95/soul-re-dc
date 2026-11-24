@@ -1,12 +1,5 @@
 /* DC 8C05AC20, 99 functions. PSX: src/Game/CAMERA.c */
-#include "common.h"
-
-/* TODO: replace with the full Camera struct ported from soul-re (include/Game/CAMERA.h) */
-typedef struct _Camera
-{
-    unsigned char unk0[0xEC];
-    long lock; /* 0xEC */
-} Camera;
+#include "Game/CAMERA.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_CalculateViewVolumeNormals);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_CalcVVClipInfo);

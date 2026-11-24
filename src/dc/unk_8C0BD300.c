@@ -1,5 +1,5 @@
 /* DC 8C0BD300, 20 functions. DC-only (no PSX counterpart found) */
-#include "common.h"
+#include "dc/unk_8C0BD300.h"
 
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BD300", func_8C0BD300);
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BD300", func_8C0BD320);

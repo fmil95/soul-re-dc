@@ -1,5 +1,5 @@
 /* DC 8C0E5760, 153 functions. PSX: src/Game/G2/ANIMG2.c */
-#include "common.h"
+#include "Game/G2/ANIMG2.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/G2/ANIMG2", func_8C0E5760);
 INCLUDE_ASM("asm/nonmatchings/Game/G2/ANIMG2", func_8C0E57C0);

@@ -1,5 +1,5 @@
 /* DC 8C0E3BA0, 13 functions. PSX: src/Game/G2/INSTNCG2.c */
-#include "common.h"
+#include "Game/G2/INSTNCG2.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/G2/INSTNCG2", func_8C0E3BA0);
 INCLUDE_ASM("asm/nonmatchings/Game/G2/INSTNCG2", G2Instance_BuildTransforms);

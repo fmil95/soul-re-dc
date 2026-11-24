@@ -1,5 +1,5 @@
 /* DC 8C0638E0, 6 functions. PSX: src/Game/BSP.c */
-#include "common.h"
+#include "Game/BSP.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/BSP", func_8C0638E0);
 INCLUDE_ASM("asm/nonmatchings/Game/BSP", func_8C063DE0);

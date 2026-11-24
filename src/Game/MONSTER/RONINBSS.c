@@ -1,5 +1,5 @@
 /* DC 8C107A00, 47 functions. PSX: src/Overlays/roninbss/roninbss.c */
-#include "common.h"
+#include "Game/MONSTER/RONINBSS.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/RONINBSS", func_8C107A00);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/RONINBSS", func_8C107AE0);

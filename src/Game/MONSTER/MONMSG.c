@@ -1,5 +1,5 @@
 /* DC 8C0FF340, 7 functions. PSX: src/Game/MONSTER/MONMSG.c */
-#include "common.h"
+#include "Game/MONSTER/MONMSG.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONMSG", MON_GroundMoveQueueHandler);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONMSG", MON_PupateMessageHandler);

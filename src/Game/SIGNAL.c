@@ -1,5 +1,5 @@
 /* DC 8C0A3D00, 44 functions. PSX: src/Game/SIGNAL.c */
-#include "common.h"
+#include "Game/SIGNAL.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/SIGNAL", func_8C0A3D00);
 INCLUDE_ASM("asm/nonmatchings/Game/SIGNAL", SIGNAL_HandleCameraAdjust);

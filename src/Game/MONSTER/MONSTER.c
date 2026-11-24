@@ -1,5 +1,5 @@
 /* DC 8C101B60, 80 functions. PSX: src/Game/MONSTER/MONSTER.c */
-#include "common.h"
+#include "Game/MONSTER/MONSTER.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONSTER", MON_DoCombatTimers);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONSTER", MON_ChangeHumanOpinion);

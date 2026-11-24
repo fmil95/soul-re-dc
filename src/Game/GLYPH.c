@@ -1,5 +1,5 @@
 /* DC 8C088620, 34 functions. PSX: src/Game/GLYPH.c */
-#include "common.h"
+#include "Game/GLYPH.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/GLYPH", GlyphInit);
 INCLUDE_ASM("asm/nonmatchings/Game/GLYPH", GlyphCollide);

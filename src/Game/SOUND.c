@@ -1,5 +1,5 @@
 /* DC 8C0A4E60, 57 functions. PSX: src/Game/SOUND.c */
-#include "common.h"
+#include "Game/SOUND.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/SOUND", SndOpenSfxChannel);
 INCLUDE_ASM("asm/nonmatchings/Game/SOUND", SndCloseSfxChannel);

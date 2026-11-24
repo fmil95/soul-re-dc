@@ -1,5 +1,5 @@
 /* DC 8C10AB40, 38 functions. PSX: src/Overlays/skinbos/skinbos.c */
-#include "common.h"
+#include "Game/MONSTER/SKINBOS.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/SKINBOS", SKINBOS_Turn);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/SKINBOS", SKINBOS_GateDrop);

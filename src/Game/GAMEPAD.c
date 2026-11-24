@@ -1,5 +1,5 @@
 /* DC 8C087640, 20 functions. PSX: src/Game/GAMEPAD.c */
-#include "common.h"
+#include "Game/GAMEPAD.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/GAMEPAD", GAMEPAD_Commands);
 INCLUDE_ASM("asm/nonmatchings/Game/GAMEPAD", GAMEPAD_DualShockEnabled);

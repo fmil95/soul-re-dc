@@ -1,5 +1,5 @@
 /* DC 8C10E800, 21 functions. PSX: src/Game/MONSTER/SOUL.c */
-#include "common.h"
+#include "Game/MONSTER/SOUL.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/SOUL", SOUL_QueueHandler);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/SOUL", SOUL_Physics);

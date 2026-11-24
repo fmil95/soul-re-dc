@@ -1,5 +1,5 @@
 /* DC 8C0909C0, 28 functions. PSX: src/Game/MEMPACK.c */
-#include "common.h"
+#include "Game/MEMPACK.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MEMPACK", func_8C0909C0);
 INCLUDE_ASM("asm/nonmatchings/Game/MEMPACK", MEMPACK_GetSmallestBlockTopBottom);

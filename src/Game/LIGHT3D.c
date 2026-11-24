@@ -1,5 +1,5 @@
 /* DC 8C08DFC0, 22 functions. PSX: src/Game/LIGHT3D.c */
-#include "common.h"
+#include "Game/LIGHT3D.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/LIGHT3D", func_8C08DFC0);
 INCLUDE_ASM("asm/nonmatchings/Game/LIGHT3D", func_8C08E240);

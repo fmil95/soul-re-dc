@@ -1,5 +1,5 @@
 /* DC 8C08AA40, 53 functions. PSX: src/Game/INSTANCE.c */
-#include "common.h"
+#include "Game/INSTANCE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", func_8C08AA40);
 INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", func_8C08AA80);

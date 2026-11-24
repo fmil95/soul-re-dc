@@ -1,5 +1,5 @@
 /* DC 8C0ECD00, 5 functions. PSX: src/Game/PLAN/PLANCOLL.c */
-#include "common.h"
+#include "Game/PLAN/PLANCOLL.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLANCOLL", PLANCOLL_DoesLOSExistFinal);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLANCOLL", PLANCOLL_CheckUnderwaterPoint);

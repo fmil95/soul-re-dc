@@ -1,5 +1,5 @@
 /* DC 8C0A79C0, 25 functions. PSX: src/Game/SPLINE.c */
-#include "common.h"
+#include "Game/SPLINE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/SPLINE", _SplineS2Pos);
 INCLUDE_ASM("asm/nonmatchings/Game/SPLINE", func_8C0A7AE0);

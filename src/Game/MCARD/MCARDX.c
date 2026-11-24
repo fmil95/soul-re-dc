@@ -1,5 +1,5 @@
 /* DC 8C0E1BC0, 36 functions. PSX: src/Overlays/mcardx/mcardx.c */
-#include "common.h"
+#include "Game/MCARD/MCARDX.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MCARD/MCARDX", func_8C0E1BC0);
 INCLUDE_ASM("asm/nonmatchings/Game/MCARD/MCARDX", func_8C0E1BE0);

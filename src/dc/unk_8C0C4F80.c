@@ -1,5 +1,5 @@
 /* DC 8C0C4F80, 24 functions. DC-only (no PSX counterpart found) */
-#include "common.h"
+#include "dc/unk_8C0C4F80.h"
 
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0C4F80", func_8C0C4F80);
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0C4F80", func_8C0C4FA0);

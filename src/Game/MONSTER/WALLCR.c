@@ -1,5 +1,5 @@
 /* DC 8C113C40, 52 functions. PSX: src/Overlays/wallcr/wallcr.c */
-#include "common.h"
+#include "Game/MONSTER/WALLCR.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/WALLCR", WALLCR_EnableControllers);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/WALLCR", WALLCR_DisableControllers);

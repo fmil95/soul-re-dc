@@ -1,5 +1,5 @@
 /* DC 8C076B20, 23 functions. PSX: src/Game/FONT.c */
-#include "common.h"
+#include "Game/FONT.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/FONT", func_8C076B20);
 INCLUDE_ASM("asm/nonmatchings/Game/FONT", func_8C076BC0);

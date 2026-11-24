@@ -1,5 +1,5 @@
 /* DC 8C100740, 22 functions. PSX: src/Game/MONSTER/MONSENSE.c */
-#include "common.h"
+#include "Game/MONSTER/MONSENSE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONSENSE", func_8C100740);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONSENSE", MONSENSE_FindIR);

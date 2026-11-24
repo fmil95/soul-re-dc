@@ -1,5 +1,5 @@
 /* DC 8C10FF80, 35 functions. PSX: src/Overlays/walbosb/walbosb.c */
-#include "common.h"
+#include "Game/MONSTER/WALBOSB.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/WALBOSB", WALBOSB_SetYaw);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/WALBOSB", WALBOSB_SetPitch);

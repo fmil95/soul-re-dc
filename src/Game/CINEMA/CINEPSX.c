@@ -1,5 +1,5 @@
 /* DC 8C11E060, 10 functions. PSX: src/Game/CINEMA/CINEPSX.c */
-#include "common.h"
+#include "Game/CINEMA/CINEPSX.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/CINEMA/CINEPSX", func_8C11E060);
 INCLUDE_ASM("asm/nonmatchings/Game/CINEMA/CINEPSX", func_8C11E0C0);

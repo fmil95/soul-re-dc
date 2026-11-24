@@ -1,5 +1,5 @@
 /* DC 8C0E0840, 11 functions. PSX: src/Game/RAZIEL/CONTROL.c */
-#include "common.h"
+#include "Game/RAZIEL/CONTROL.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/RAZIEL/CONTROL", SetPhysics);
 INCLUDE_ASM("asm/nonmatchings/Game/RAZIEL/CONTROL", ResetPhysics);

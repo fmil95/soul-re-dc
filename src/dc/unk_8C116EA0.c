@@ -1,5 +1,5 @@
 /* DC 8C116EA0, 23 functions. DC-only (no PSX counterpart found) */
-#include "common.h"
+#include "dc/unk_8C116EA0.h"
 
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C116EA0", func_8C116EA0);
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C116EA0", func_8C116EE0);

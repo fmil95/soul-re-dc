@@ -12,7 +12,9 @@ NAME     := 1st_read
 TARGET   := build/1ST_READ.BIN
 CONFIG   := config/$(NAME).toml
 
-CC1FLAGS := -quiet -ml -m4-single-only -O2 -fno-delayed-branch
+# Game code flags: branch delay slots are never filled (3618/3631 rts have a nop), frame pointer kept.
+CFLAGS   := -ml -m4-single-only -O2 -fno-delayed-branch
+CPPFLAGS := -Iinclude -DTARGET_DC
 ASFLAGS  := -little
 
 .PHONY: all setup split compare clean psx-match gen-c
@@ -37,10 +39,11 @@ gen-c:
 	$(PYTHON) tools/gen_c.py
 
 .SECONDEXPANSION:
-build/src/%.o: src/%.c $$(wildcard asm/nonmatchings/$$*/*.s) include/common.h | build/$(NAME).ld
+HEADERS := $(shell find include -name '*.h' 2>/dev/null)
+# The gcc driver (not cpp/cc1 directly) so predefines and the compiler's own <stdarg.h> match the original build.
+build/src/%.o: src/%.c $$(wildcard asm/nonmatchings/$$*/*.s) $(HEADERS) | build/$(NAME).ld
 	@mkdir -p $(dir $@)
-	$(DCTOOL) cpp -lang-c -D__sh__ -D__ELF__ -D__LITTLE_ENDIAN__ -D__SH4_SINGLE_ONLY__ -D__OPTIMIZE__ -Iinclude $< build/src/$*.i
-	$(DCTOOL) cc1 build/src/$*.i $(CC1FLAGS) -o build/src/$*.s
+	$(DCTOOL) gcc -S $(CFLAGS) $(CPPFLAGS) $< -o build/src/$*.s
 	$(DCTOOL) as $(ASFLAGS) -o $@ build/src/$*.s
 
 build/asm/%.o: asm/%.s

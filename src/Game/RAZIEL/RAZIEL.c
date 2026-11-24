@@ -1,5 +1,5 @@
 /* DC 8C0C5300, 195 functions. PSX: src/Game/RAZIEL/RAZIEL.c */
-#include "common.h"
+#include "Game/RAZIEL/RAZIEL.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/RAZIEL/RAZIEL", StateHandlerPuppetShow);
 INCLUDE_ASM("asm/nonmatchings/Game/RAZIEL/RAZIEL", StateHandlerMoveToPosition);

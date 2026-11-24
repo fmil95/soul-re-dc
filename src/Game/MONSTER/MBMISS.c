@@ -1,5 +1,5 @@
 /* DC 8C0F7A60, 13 functions. PSX: src/Game/MONSTER/MBMISS.c */
-#include "common.h"
+#include "Game/MONSTER/MBMISS.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MBMISS", func_8C0F7A60);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MBMISS", WCBEGG_Message);

@@ -1,5 +1,5 @@
 /* DC 8C107820, 7 functions. PSX: src/Game/MONSTER/MONTABLE.c */
-#include "common.h"
+#include "Game/MONSTER/MONTABLE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONTABLE", MONTABLE_SetupTablePointer);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONTABLE", MONTABLE_GetStateFuncs);

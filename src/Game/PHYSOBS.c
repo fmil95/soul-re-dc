@@ -1,5 +1,5 @@
 /* DC 8C0967E0, 75 functions. PSX: src/Game/PHYSOBS.c */
-#include "common.h"
+#include "Game/PHYSOBS.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PHYSOBS", PHYSOB_PlayDropSound);
 INCLUDE_ASM("asm/nonmatchings/Game/PHYSOBS", PHYSOBS_IsAPushBlockAttached);

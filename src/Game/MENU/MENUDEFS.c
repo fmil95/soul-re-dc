@@ -1,5 +1,5 @@
 /* DC 8C0E2DA0, 9 functions. PSX: src/Game/MENU/MENUDEFS.c */
-#include "common.h"
+#include "Game/MENU/MENUDEFS.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENUDEFS", menudefs_toggle_dualshock);
 INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENUDEFS", func_8C0E2E40);

@@ -1,5 +1,5 @@
 /* DC 8C0EB3C0, 10 functions. PSX: src/Game/PLAN/PLAN.c */
-#include "common.h"
+#include "Game/PLAN/PLAN.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLAN", PLAN_CalcMinDistFromExistingNodes);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLAN", PLAN_UpdatePlanMkrNodes);

@@ -1,5 +1,5 @@
 /* DC 8C0EEC60, 66 functions. PSX: src/Overlays/aluka/aluka.c */
-#include "common.h"
+#include "Game/MONSTER/ALUKA.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKA", ALUKA_ControllersEnabled);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKA", ALUKA_SetPitch);

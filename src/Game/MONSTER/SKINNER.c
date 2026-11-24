@@ -1,5 +1,5 @@
 /* DC 8C10D680, 16 functions. PSX: src/Overlays/skinner/skinner.c */
-#include "common.h"
+#include "Game/MONSTER/SKINNER.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/SKINNER", func_8C10D680);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/SKINNER", func_8C10D860);

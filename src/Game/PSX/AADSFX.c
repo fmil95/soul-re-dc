@@ -1,5 +1,5 @@
 /* DC 8C0B82C0, 23 functions. PSX: src/Game/PSX/AADSFX.c */
-#include "common.h"
+#include "Game/PSX/AADSFX.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/AADSFX", aadPlaySfx);
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/AADSFX", aadStopSfx);

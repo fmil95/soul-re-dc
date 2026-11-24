@@ -1,5 +1,5 @@
 /* DC 8C126C20, 5 functions. DC-only (no PSX counterpart found) */
-#include "common.h"
+#include "dc/unk_8C126C20.h"
 
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C126C20", func_8C126C20);
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C126C20", func_8C126C80);

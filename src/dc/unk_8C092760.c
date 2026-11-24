@@ -1,5 +1,5 @@
 /* DC 8C092760, 19 functions. DC-only (no PSX counterpart found) */
-#include "common.h"
+#include "dc/unk_8C092760.h"
 
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C092760", func_8C092760);
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C092760", func_8C0927A0);

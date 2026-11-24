@@ -1,5 +1,5 @@
 /* DC 8C083DA0, 47 functions. PSX: src/Game/GAMELOOP.c */
-#include "common.h"
+#include "Game/GAMELOOP.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/GAMELOOP", GAMELOOP_AllocStaticMemory);
 INCLUDE_ASM("asm/nonmatchings/Game/GAMELOOP", GAMELOOP_InitGameTracker);

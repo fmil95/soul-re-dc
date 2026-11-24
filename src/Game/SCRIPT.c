@@ -1,5 +1,5 @@
 /* DC 8C0A2140, 38 functions. PSX: src/Game/SCRIPT.c */
-#include "common.h"
+#include "Game/SCRIPT.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/SCRIPT", SCRIPT_CombineEulerAngles);
 INCLUDE_ASM("asm/nonmatchings/Game/SCRIPT", func_8C0A21C0);

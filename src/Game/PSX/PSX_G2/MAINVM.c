@@ -1,5 +1,5 @@
 /* DC 8C1168C0, 9 functions. PSX: src/Game/PSX/PSX_G2/MAINVM.c */
-#include "common.h"
+#include "Game/PSX/PSX_G2/MAINVM.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/PSX_G2/MAINVM", func_8C1168C0);
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/PSX_G2/MAINVM", func_8C1168E0);

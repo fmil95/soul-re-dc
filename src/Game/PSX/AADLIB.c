@@ -1,5 +1,5 @@
 /* DC 8C0B4A80, 75 functions. PSX: src/Game/PSX/AADLIB.c */
-#include "common.h"
+#include "Game/PSX/AADLIB.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/AADLIB", func_8C0B4A80);
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/AADLIB", aadInit);

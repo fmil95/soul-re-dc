@@ -1,5 +1,5 @@
 /* DC 8C0A92C0, 79 functions. PSX: src/Game/STATE.c */
-#include "common.h"
+#include "Game/STATE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/STATE", func_8C0A92C0);
 INCLUDE_ASM("asm/nonmatchings/Game/STATE", InitMessageQueue);

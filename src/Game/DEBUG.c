@@ -1,5 +1,5 @@
 /* DC 8C06AF00, 66 functions. PSX: src/Game/DEBUG.c */
-#include "common.h"
+#include "Game/DEBUG.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/DEBUG", func_8C06AF00);
 INCLUDE_ASM("asm/nonmatchings/Game/DEBUG", func_8C06AF40);

@@ -1,5 +1,5 @@
 /* DC 8C08F7A0, 28 functions. PSX: src/Game/MATH3D.c */
-#include "common.h"
+#include "Game/MATH3D.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", func_8C08F7A0);
 INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", func_8C08F940);

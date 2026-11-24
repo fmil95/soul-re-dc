@@ -1,5 +1,5 @@
 /* DC 8C11BB60, 52 functions. DC-only (no PSX counterpart found) */
-#include "common.h"
+#include "dc/unk_8C11BB60.h"
 
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C11BB60", func_8C11BB60);
 INCLUDE_ASM("asm/nonmatchings/dc/unk_8C11BB60", func_8C11BBA0);

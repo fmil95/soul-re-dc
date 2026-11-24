@@ -1,5 +1,5 @@
 /* DC 8C092FC0, 40 functions. PSX: src/Game/PHYSICS.c */
-#include "common.h"
+#include "Game/PHYSICS.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PHYSICS", SetNoPtCollideInFamily);
 INCLUDE_ASM("asm/nonmatchings/Game/PHYSICS", ResetNoPtCollideInFamily);

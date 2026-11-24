@@ -1,5 +1,5 @@
 /* DC 8C0E10A0, 15 functions. PSX: src/Game/MENU/MENU.c */
-#include "common.h"
+#include "Game/MENU/MENU.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENU", menu_data_size);
 INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENU", menu_initialize);

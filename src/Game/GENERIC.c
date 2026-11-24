@@ -1,5 +1,5 @@
 /* DC 8C088120, 6 functions. PSX: src/Game/GENERIC.c */
-#include "common.h"
+#include "Game/GENERIC.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/GENERIC", GenericInit);
 INCLUDE_ASM("asm/nonmatchings/Game/GENERIC", GenericCollide);

@@ -1,5 +1,5 @@
 /* DC 8C0E3660, 5 functions. PSX: src/Game/MENU/MENUFACE.c */
-#include "common.h"
+#include "Game/MENU/MENUFACE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENUFACE", func_8C0E3660);
 INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENUFACE", func_8C0E36A0);

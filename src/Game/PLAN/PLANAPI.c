@@ -1,5 +1,5 @@
 /* DC 8C0EBD20, 20 functions. PSX: src/Game/PLAN/PLANAPI.c */
-#include "common.h"
+#include "Game/PLAN/PLANAPI.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLANAPI", PLANAPI_ConvertPlanIntoEnmyPlanDataFormat);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/PLANAPI", PLANAPI_FindPathBetweenNodes);

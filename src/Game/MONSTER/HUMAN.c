@@ -1,5 +1,5 @@
 /* DC 8C0F41C0, 16 functions. PSX: src/Game/MONSTER/HUMAN.c */
-#include "common.h"
+#include "Game/MONSTER/HUMAN.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/HUMAN", HUMAN_WaitForWeapon);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/HUMAN", HUMAN_CreateWeapon);

@@ -1,5 +1,5 @@
 /* DC 8C0B7520, 18 functions. PSX: src/Game/PSX/AADSEQEV.c */
-#include "common.h"
+#include "Game/PSX/AADSEQEV.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/AADSEQEV", func_8C0B7520);
 INCLUDE_ASM("asm/nonmatchings/Game/PSX/AADSEQEV", func_8C0B76C0);

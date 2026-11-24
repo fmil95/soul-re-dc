@@ -1,5 +1,5 @@
 /* DC 8C0F8520, 8 functions. PSX: src/Game/MONSTER/MISSILE.c */
-#include "common.h"
+#include "Game/MONSTER/MISSILE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MISSILE", MISSILE_Process);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MISSILE", MISSILE_Collide);

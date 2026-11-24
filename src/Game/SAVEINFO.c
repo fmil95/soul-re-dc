@@ -1,5 +1,5 @@
 /* DC 8C0A0640, 46 functions. PSX: src/Game/SAVEINFO.c */
-#include "common.h"
+#include "Game/SAVEINFO.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/SAVEINFO", func_8C0A0640);
 INCLUDE_ASM("asm/nonmatchings/Game/SAVEINFO", func_8C0A0680);

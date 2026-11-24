@@ -27,8 +27,16 @@ Things to know:
 
 - **Compiler flags:** `-ml -m4-single-only -O2 -fno-delayed-branch`. Branch delay slots are left as `nop`
   (3618 of 3631 `rts` in the game), and the frame pointer is kept (`mov r15,r14`), as plain `-O2` does in this GCC.
-- **Structs:** they are not ported yet. `src/Game/CAMERA.c` uses a stub `Camera` struct until the soul-re
-  headers are brought over.
+- **Headers:** every `src/<file>.c` includes its own `include/<file>.h`. These headers come from soul-re
+  (`tools/import_psx_headers.py`, imported from commit `45b43285`), and the overlay headers moved to their DC
+  location (for example `Overlays/aluka/aluka.h` became `Game/MONSTER/ALUKA.h`). All structs come from
+  `include/Game/TYPES.h` and `EXTRA.h`. DC-only files get a minimal header that only includes `common.h`.
+  - `include/common.h` is a DC version of soul-re's:
+    - Varargs come from the compiler's `<stdarg.h>`, because the SH ABI passes them in registers.
+    - The MIPS GTE macros (`Libs/GTE.h`) are left out.
+  - The struct layout appears to be unchanged from PSX: `CAMERA_Lock` matches using the PSX `Camera` struct
+    (`lock` at `0xEC`).
+  - DC-specific edits so far: `MEMPACK.h` and `TIMER.h` now include `common.h` themselves.
 - **Data:** `.rodata`/`.data` are still one blob. A decompiled function that needs its own string literals or
   static data can't match until that data is split out of the blob.
 - **Symbols:** asm refers to data as `D_<ADDR>` and to SDK functions by name. These are defined in the generated
@@ -43,7 +51,10 @@ Things to know:
     with the PSX-derived order.
   - **Function names:** PSX names come from `config/psx_match.csv`. Unmatched functions are `func_<ADDR>`, and
     DC-only files are `src/dc/unk_<ADDR>.c`. The PSX monster overlays become `src/Game/MONSTER/<NAME>.c`.
-- `tools/gen_c.py` (`make gen-c`) creates any missing `src/**/*.c`. It never overwrites existing files.
+- `tools/gen_c.py` (`make gen-c`) creates any missing `src/**/*.c`, each including its own header, and
+  creates missing headers. It never overwrites existing files.
+- The build compiles through the `gcc` driver (`gcc -S`, then `as`) rather than calling `cpp`/`cc1` directly.
+  That way the predefines (`__GNUC__`, …) and the compiler's system headers match the original build.
 - `tools/gen_asm.py` runs from `make split` and writes one `.s` per function:
   - instructions as `.word` with the SDK `objdump` text in comments
   - literal-pool addresses as `.long <symbol>`
@@ -138,13 +149,13 @@ tools/gen_asm.py       asm/nonmatchings/**/*.s (run by split.py)
 tools/dctool.sh        run SDK tools under Wine
 config/functions.csv   function table: address, file, name (hand-editable)
 src/                   game C sources (INCLUDE_ASM + decompiled functions)
-include/common.h       INCLUDE_ASM macro
+include/               headers imported from soul-re (Game/**, Libs/SDK.h) + DC common.h, include_asm.h
+tools/import_psx_headers.py  copy soul-re headers into include/ (overlays mapped to DC paths)
 asm/nonmatchings/      generated, not committed
 ```
 
 ## Next steps
 
-1. Port the soul-re headers (structs, prototypes) into `include/` so PSX C can be dropped in function by function.
-2. Split `.rodata`/`.data` per file, so functions with string literals and static data can match.
-3. Set up objdiff for per-function diffing, and a progress report.
-4. Replace the `sdk_shc` and `lib_text` blobs with the real SDK library objects.
+1. Split `.rodata`/`.data` per file, so functions with string literals and static data can match.
+2. Set up objdiff for per-function diffing, and a progress report.
+3. Replace the `sdk_shc` and `lib_text` blobs with the real SDK library objects.

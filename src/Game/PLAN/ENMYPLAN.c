@@ -1,5 +1,5 @@
 /* DC 8C0EE0E0, 14 functions. PSX: src/Game/PLAN/ENMYPLAN.c */
-#include "common.h"
+#include "Game/PLAN/ENMYPLAN.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/ENMYPLAN", ENMYPLAN_InitEnemyPlanPool);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAN/ENMYPLAN", ENMYPLAN_GetNextAvailablePlanningSlot);

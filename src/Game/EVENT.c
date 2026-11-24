@@ -1,5 +1,5 @@
 /* DC 8C06DE40, 116 functions. PSX: src/Game/EVENT.c */
-#include "common.h"
+#include "Game/EVENT.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/EVENT", EVENT_UpdateResetSignalArrayAndWaterMovement);
 INCLUDE_ASM("asm/nonmatchings/Game/EVENT", EVENT_ResetAllOneTimeVariables);

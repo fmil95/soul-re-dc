@@ -1,5 +1,5 @@
 /* DC 8C0F8800, 21 functions. PSX: src/Game/MONSTER/MONAPI.c */
-#include "common.h"
+#include "Game/MONSTER/MONAPI.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONAPI", MonsterProcess);
 INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/MONAPI", MonsterInit);
