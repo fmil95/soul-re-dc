@@ -1,0 +1,32 @@
+/* DC 8C0F2CA0, 29 functions. PSX: src/Overlays/alukabss/alukabss.c */
+#include "common.h"
+
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_SetTwist);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_RotateToFace);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_RazTimeAtMarker);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_TimeSinceSpit);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_ShouldAttack);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_InitCircle);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_Circle);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_SetUpWaterPlaneClip);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_Query);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_Message);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_Init);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_CleanUp);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_DamageEffect);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_IdleEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_Idle);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_PursueEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_Pursue);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_CombatEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_Combat);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_AttackEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_Attack);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_LandInWaterEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_LandInWater);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_ProjectileEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", ALUKABSS_Projectile);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", func_8C0F4040);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", func_8C0F4080);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", func_8C0F4160);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/ALUKABSS", func_8C0F41A0);

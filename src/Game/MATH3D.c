@@ -1,0 +1,31 @@
+/* DC 8C08F7A0, 28 functions. PSX: src/Game/MATH3D.c */
+#include "common.h"
+
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", func_8C08F7A0);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", func_8C08F940);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", func_8C08F9C0);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_LengthXYZ);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_LengthXY);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", func_8C08FB40);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_Normalize);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_FastAtan2);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", func_8C08FD80);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_FastSqrt);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_FastSqrt0);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", func_8C08FF60);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_DistanceBetweenPositions);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_AngleBetweenVectors);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_RotMatAboutVec);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_SetUnityMatrix);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", AngleMoveToward);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", AngleDiff);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_AngleFromPosToPos);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_ZYXtoXYZ);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_ElevationFromPosToPos);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_RotationFromPosToPos);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_veclen2);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_RotateAxisToVector);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_ConeDetect);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", func_8C090820);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_CrossProduct);
+INCLUDE_ASM("asm/nonmatchings/Game/MATH3D", MATH3D_SquareLength);

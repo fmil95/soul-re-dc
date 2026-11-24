@@ -1,0 +1,35 @@
+/* DC 8C0BCE80, 32 functions. DC-only (no PSX counterpart found) */
+#include "common.h"
+
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCE80);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCEA0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCEC0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCEE0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCF00);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCF20);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCF40);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCF60);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCF80);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCFA0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCFC0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BCFE0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD000);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD020);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD040);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD060);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD080);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD0A0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD0C0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD0E0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD100);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD140);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD160);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD180);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD1A0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD1C0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD1E0);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD200);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD220);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD240);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD260);
+INCLUDE_ASM("asm/nonmatchings/dc/unk_8C0BCE80", func_8C0BD280);

@@ -9,7 +9,45 @@ Matching decompilation of **Legacy of Kain: Soul Reaver** for the Sega Dreamcast
 
 ## Status
 
-Toolchain runs, and the binary rebuilds byte-identical from blobs. Nothing is decompiled yet.
+The game code builds from C in Ship-of-Theseus style:
+
+- 116 source files (83 carried over from PSX, 33 DC-only) with 3474 functions. Every function not yet
+  decompiled is pulled in with `INCLUDE_ASM`.
+- The output is byte-identical.
+- 2 functions are decompiled (`CAMERA_Lock`, `CAMERA_Unlock`).
+
+## Decompiling
+
+1. Pick a function in `src/<file>.c`. Its asm is in `asm/nonmatchings/<file>/<name>.s`, and the PSX C is in
+   soul-re under the same file name.
+2. Replace its `INCLUDE_ASM(...)` line with the C definition.
+3. Run `make`. It must still print `OK`; `tools/compare.py` reports the first differing address otherwise.
+
+Things to know:
+
+- **Compiler flags:** `-ml -m4-single-only -O2 -fno-delayed-branch`. Branch delay slots are left as `nop`
+  (3618 of 3631 `rts` in the game), and the frame pointer is kept (`mov r15,r14`), as plain `-O2` does in this GCC.
+- **Structs:** they are not ported yet. `src/Game/CAMERA.c` uses a stub `Camera` struct until the soul-re
+  headers are brought over.
+- **Data:** `.rodata`/`.data` are still one blob. A decompiled function that needs its own string literals or
+  static data can't match until that data is split out of the blob.
+- **Symbols:** asm refers to data as `D_<ADDR>` and to SDK functions by name. These are defined in the generated
+  linker script, so C can use them as `extern`.
+
+### How the files were made
+
+- `tools/gen_functions.py` writes `config/functions.csv`, which is the function → file → name table. Edit it
+  by hand to rename or re-split. Notes:
+  - **File boundaries:** `ld` pads between object files with zeros, while gas pads between functions with
+    `nop`s. A zero-padded function start therefore begins a new file. This gives 96 boundaries, which agree
+    with the PSX-derived order.
+  - **Function names:** PSX names come from `config/psx_match.csv`. Unmatched functions are `func_<ADDR>`, and
+    DC-only files are `src/dc/unk_<ADDR>.c`. The PSX monster overlays become `src/Game/MONSTER/<NAME>.c`.
+- `tools/gen_c.py` (`make gen-c`) creates any missing `src/**/*.c`. It never overwrites existing files.
+- `tools/gen_asm.py` runs from `make split` and writes one `.s` per function:
+  - instructions as `.word` with the SDK `objdump` text in comments
+  - literal-pool addresses as `.long <symbol>`
+  - a leading `.align 5`, with trailing padding dropped so that gas and `ld` regenerate it
 
 ## What we know
 
@@ -81,8 +119,8 @@ These inputs are gitignored and must never be committed.
 - `tools/dctool.sh <tool> args…` runs any SDK tool under Wine (for example `gcc`, `cc1`, `cpp`, `as`, `ld`,
   `objdump`, `objcopy`).
 - binutils 2.9 has no `.incbin`, so `tools/bin2elf.py` wraps raw blobs in ELF objects.
-- The default compile flags are `-ml -m4-single-only -O2`. These are not verified per file yet: some game
-  functions keep a frame pointer (`mov r15,r14`), so flags may vary.
+- In SH gas, `.long` aligns itself to 4 bytes. That's why the generated asm uses `.word` for everything
+  except literal-pool words, which are always 4-byte aligned.
 
 ## Layout
 
@@ -94,14 +132,19 @@ tools/libmatch.py      locate SDK library objects in the binary (relocation-mask
 tools/elfobj.py        tiny ELF/ar reader used by libmatch
 tools/compare.py       SHA-1 check + per-segment diff report
 tools/psx_match.py     match DC functions to the PSX decomp (soul-re), derive file splits
+tools/gen_functions.py config/psx_match.csv -> config/functions.csv (file splits + names)
+tools/gen_c.py         create src/**/*.c INCLUDE_ASM stubs
+tools/gen_asm.py       asm/nonmatchings/**/*.s (run by split.py)
 tools/dctool.sh        run SDK tools under Wine
-src/  include/  asm/   (to come)
+config/functions.csv   function table: address, file, name (hand-editable)
+src/                   game C sources (INCLUDE_ASM + decompiled functions)
+include/common.h       INCLUDE_ASM macro
+asm/nonmatchings/      generated, not committed
 ```
 
 ## Next steps
 
-1. A disassembler/splitter that turns `game_text` into GAS-syntax `.s` files, split per source file using
-   `config/psx_splits.txt` and named from `config/psx_match.csv`. It must reassemble byte-identically with
-   the SDK `as`.
-2. Replace the `sdk_shc` and `lib_text` blobs with the real SDK library objects.
-3. Set up objdiff for per-function diffing, then start matching C, reusing the PS1 decomp's sources where they apply.
+1. Port the soul-re headers (structs, prototypes) into `include/` so PSX C can be dropped in function by function.
+2. Split `.rodata`/`.data` per file, so functions with string literals and static data can match.
+3. Set up objdiff for per-function diffing, and a progress report.
+4. Replace the `sdk_shc` and `lib_text` blobs with the real SDK library objects.

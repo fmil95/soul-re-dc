@@ -9,3 +9,4 @@ build/
 asm/
 __pycache__/
 *.pyc
+build.log

@@ -3,6 +3,7 @@
 
 Writes:
   build/bin/<segment>.o        ELF object wrapping the raw bytes of every `bin` segment
+  asm/nonmatchings/...         one .s per function of every `functions` segment (tools/gen_asm.py)
   build/<name>.ld              linker script placing every segment at its address
   build/<name>.objs            list of object files the link needs (one per line)
 
@@ -10,15 +11,63 @@ Usage: split.py config/1st_read.toml
 """
 import hashlib
 import os
+import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bin2elf  # noqa: E402
+import gen_asm  # noqa: E402
 
 try:
     import tomllib
 except ImportError:  # Python < 3.11
     sys.exit("split.py needs Python 3.11+ (tomllib)")
+
+
+def disassembly_listing(rom, vram, start, stop, name):
+    """SDK objdump listing of a code range (cached in build/), used for asm comments. None if unavailable."""
+    listing = f"build/{name}.dis"
+    if os.path.exists(listing):
+        return listing
+    raw = f"build/{name}_raw.o"
+    with open(raw, "wb") as f:
+        f.write(bin2elf.build(rom[start - vram:stop - vram], ".text", f"__seg_{name}", 32))
+    try:
+        out = subprocess.run(["bash", "tools/dctool.sh", "objdump", "-d", raw], capture_output=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError) as e:
+        print(f"warning: objdump failed ({e}); asm will have no disassembly comments")
+        return None
+    with open(listing, "wb") as f:
+        f.write(out)
+    return listing
+
+
+def lib_symbols(rom, katana, taken):
+    """Names for SDK library functions (unique names only, never clashing with game functions)."""
+    try:
+        import psx_match
+        found = psx_match.dc_lib_names(rom, katana)
+    except Exception as e:  # noqa: BLE001 - names are cosmetic
+        print(f"warning: no SDK library names ({e})")
+        return {}
+    by_name = {}
+    for addr, nm in found.items():
+        by_name.setdefault(nm, set()).add(addr)
+    return {next(iter(a)): nm for nm, a in by_name.items() if len(a) == 1 and nm not in taken and nm.isidentifier()}
+
+
+def split_functions(rom, vram, start, stop, seg, cfg):
+    """Generate asm for a `functions` segment; returns (ordered file list, {symbol: address})."""
+    funcs = gen_asm.read_functions(seg["functions"])
+    if funcs[0][0] != start or not all(start <= a < stop for a, _, _ in funcs):
+        sys.exit(f"{seg['functions']}: functions must start at {start:#x} and stay below {stop:#x}")
+    listing = disassembly_listing(rom, vram, start, stop, seg["name"])
+    libs = lib_symbols(rom, cfg["binary"].get("katana", "KATANA"), {n for _, _, n in funcs})
+    files, data_syms, written = gen_asm.generate(rom, seg["functions"], listing=listing, lib_names=libs)
+    for addr, nm in libs.items():
+        data_syms["_" + nm] = addr
+    print(f"{seg['name']}: {len(funcs)} functions in {len(files)} files, {written} asm files updated")
+    return files, data_syms
 
 
 def main():
@@ -44,6 +93,7 @@ def main():
         "{",
     ]
     objs = []
+    symbols = {}
     for i, s in enumerate(segs):
         start = s["start"]
         stop = segs[i + 1]["start"] if i + 1 < len(segs) else end
@@ -60,6 +110,16 @@ def main():
             obj = f"build/asm/{s['name']}.o"
         elif kind == "c":
             obj = f"build/src/{s['name']}.o"
+        elif kind == "functions":
+            files, data_syms = split_functions(rom, vram, start, stop, s, cfg)
+            symbols.update(data_syms)
+            fobjs = [f"build/src/{fl}.o" for fl in files]
+            objs += fobjs
+            ld.append(f"  .seg_{s['name']} 0x{start:08X} : AT(0x{start:08X})")
+            ld.append("  {")
+            ld += [f"    {o}(.text)" for o in fobjs]
+            ld.append("  }")
+            continue
         else:
             sys.exit(f"segment {s['name']}: unknown kind {kind}")
         objs.append(obj)
@@ -68,6 +128,7 @@ def main():
         secs = [sec] + [x for x in (".text", ".rodata", ".data") if x != sec]
         ld.append("  { " + " ".join(f"{obj}({x})" for x in secs) + " }")
     ld += ["  /DISCARD/ : { *(.comment) }", "}"]
+    ld[3:3] = [f"{sym} = 0x{v:08X};" for sym, v in sorted(symbols.items(), key=lambda x: x[1])]
     name = b["name"].lower()
     with open(f"build/{name}.ld", "w", newline="\n") as f:
         f.write("\n".join(ld) + "\n")

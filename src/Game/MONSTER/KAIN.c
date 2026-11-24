@@ -1,0 +1,33 @@
+/* DC 8C0F56A0, 30 functions. PSX: src/Overlays/kain/kain.c */
+#include "common.h"
+
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_PickUpReaver);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_FindFarthestMarkerPosition);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_TeleportEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Teleport);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_EndEffects);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_LightningEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Lightning);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_FFieldOffset);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_ChargeEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_ChargeUp);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_ChargeDown);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", CheckHit);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", SwitchToHit);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_DamageEffect);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Message);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Query);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Init);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_CleanUp);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_IdleEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Idle);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_CombatEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Combat);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_AttackEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Attack);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_PursueEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Pursue);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_HitEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_Hit);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", KAIN_DoNothingEntry);
+INCLUDE_ASM("asm/nonmatchings/Game/MONSTER/KAIN", func_8C0F7A40);

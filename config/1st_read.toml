@@ -11,6 +11,7 @@ rom   = "rom/1ST_READ.BIN"
 vram  = 0x8C010000
 size  = 3455844
 sha1  = "92b051a490599e062a19b5cbc4ecab83f26428f3"
+katana = "KATANA"   # SDK location, used to name SDK library functions referenced from game code
 
 # SHC-compiled SDK libraries (Shinobi/Kamui2/CRI/MW sections PSG/CSG/DSG...) + strt1/strt2.
 [[segment]]
@@ -20,11 +21,13 @@ kind  = "bin"
 section = ".sdk_shc"
 
 # Game code, GCC 2.9-SYSDEV -ml -m4-single-only. Nothing from the SDK matches here.
+# One object per source file, in link order, as listed in config/functions.csv (src/<file>.c with
+# INCLUDE_ASM for every function not yet decompiled).
 [[segment]]
 name  = "game_text"
 start = 0x8C05AC20
-kind  = "bin"
-section = ".text"
+kind  = "functions"
+functions = "config/functions.csv"
 
 # GCC-side libraries: audio64, sh4nlfzz, shinobi (gnu parts), libc, libgcc.
 [[segment]]

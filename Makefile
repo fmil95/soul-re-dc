@@ -12,10 +12,10 @@ NAME     := 1st_read
 TARGET   := build/1ST_READ.BIN
 CONFIG   := config/$(NAME).toml
 
-CC1FLAGS := -quiet -ml -m4-single-only -O2
+CC1FLAGS := -quiet -ml -m4-single-only -O2 -fno-delayed-branch
 ASFLAGS  := -little
 
-.PHONY: all setup split compare clean psx-match
+.PHONY: all setup split compare clean psx-match gen-c
 all: compare
 
 setup:
@@ -28,10 +28,16 @@ setup:
 
 split: build/$(NAME).ld
 
-build/$(NAME).ld build/$(NAME).objs: $(CONFIG) tools/split.py rom/1ST_READ.BIN
+# Also generates asm/nonmatchings/**.s from config/functions.csv.
+build/$(NAME).ld build/$(NAME).objs: $(CONFIG) config/functions.csv tools/split.py tools/gen_asm.py rom/1ST_READ.BIN
 	$(PYTHON) tools/split.py $(CONFIG)
 
-build/src/%.o: src/%.c
+# Create src/**/*.c (INCLUDE_ASM stubs) for files in config/functions.csv that don't exist yet.
+gen-c:
+	$(PYTHON) tools/gen_c.py
+
+.SECONDEXPANSION:
+build/src/%.o: src/%.c $$(wildcard asm/nonmatchings/$$*/*.s) include/common.h | build/$(NAME).ld
 	@mkdir -p $(dir $@)
 	$(DCTOOL) cpp -lang-c -D__sh__ -D__ELF__ -D__LITTLE_ENDIAN__ -D__SH4_SINGLE_ONLY__ -D__OPTIMIZE__ -Iinclude $< build/src/$*.i
 	$(DCTOOL) cc1 build/src/$*.i $(CC1FLAGS) -o build/src/$*.s
