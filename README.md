@@ -32,6 +32,33 @@ Toolchain runs, and the binary rebuilds byte-identical from blobs. Nothing is de
 | `8C12A9E0`–`8C138100` | GCC-side libraries: audio64, sh4nlfzz, shinobi (GNU parts), libc, libgcc |
 | `8C138100`–`8C35BB64` | `.rodata` and `.data`. `.bss` is not stored in the file. |
 
+### Cross-reference with the PSX decomp
+
+`make psx-match PSX=~/soul-re` matches DC functions to PSX functions using the
+[soul-re](https://github.com/fmil95/soul-re) build (`build/*.elf`, `build/*.map`) and writes:
+
+- `config/psx_match.csv`: every DC function start, with the PSX name and file where matched.
+- `config/psx_splits.txt`: DC address range per PSX file.
+
+How it matches:
+
+- **DC function starts (3096):** every 32-byte-aligned word in the binary that points into game code.
+  GCC calls through literal pools, and functions are `.align 5`.
+- **Seeds:** functions with identical sets of string references on both platforms.
+- **Propagation:** callee lists (PSX `jal` targets vs DC literal-pool call targets, with libc calls named on
+  both sides), unique unmatched callers, and source order within a file.
+
+Current result: 2264 of 2694 PSX functions are matched.
+
+DC link order:
+
+1. `Game/*.c`, in nearly alphabetical order.
+2. The platform directory (`SUPPORT`, `AADLIB`, `AADSEQEV`, `AADSFX`, `MAIN`), which replaces `PSX/`.
+3. `RAZIEL/`, `LOCAL/`, `MENU/`, `G2/`, `PLAN/`.
+4. `MONSTER/`, with the PSX overlays (`aluka`, `kain`, `walboss`, …) linked into it in alphabetical order.
+5. DC rewrites of `LOAD3D`, `STRMLOAD`, `CINEMA` and `DRAW`. These match PSX poorly; the remaining DC-only code
+   sits around them.
+
 ## Setup
 
 Building happens in **WSL/Linux with Wine** (tested: Ubuntu 24.04, wine 9.0).
@@ -66,13 +93,15 @@ tools/split.py         config -> build/bin/*.o blobs + build/1st_read.ld
 tools/libmatch.py      locate SDK library objects in the binary (relocation-masked byte match)
 tools/elfobj.py        tiny ELF/ar reader used by libmatch
 tools/compare.py       SHA-1 check + per-segment diff report
+tools/psx_match.py     match DC functions to the PSX decomp (soul-re), derive file splits
 tools/dctool.sh        run SDK tools under Wine
 src/  include/  asm/   (to come)
 ```
 
 ## Next steps
 
-1. A disassembler/splitter that turns `game_text` into one GAS-syntax `.s` per function, with symbols and
-   literal pools, that reassembles byte-identically with the SDK `as`.
+1. A disassembler/splitter that turns `game_text` into GAS-syntax `.s` files, split per source file using
+   `config/psx_splits.txt` and named from `config/psx_match.csv`. It must reassemble byte-identically with
+   the SDK `as`.
 2. Replace the `sdk_shc` and `lib_text` blobs with the real SDK library objects.
 3. Set up objdiff for per-function diffing, then start matching C, reusing the PS1 decomp's sources where they apply.

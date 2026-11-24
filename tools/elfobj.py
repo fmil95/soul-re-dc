@@ -48,10 +48,10 @@ class ElfObject:
 
         self.sections = []
         for h in hdrs:
-            name_off, sh_type, flags, _addr, off, size, link, info, align, entsize = h
+            name_off, sh_type, flags, addr, off, size, link, info, align, entsize = h
             data = b"" if sh_type == SHT_NOBITS else blob[off:off + size]
             s = Section(cstr(strtab, name_off), sh_type, flags, align, data, size)
-            s.link, s.info = link, info
+            s.link, s.info, s.addr = link, info, addr
             self.sections.append(s)
 
         self.symbols = []  # (name, value, size, info, shndx)

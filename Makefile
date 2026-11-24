@@ -15,7 +15,7 @@ CONFIG   := config/$(NAME).toml
 CC1FLAGS := -quiet -ml -m4-single-only -O2
 ASFLAGS  := -little
 
-.PHONY: all setup split compare clean
+.PHONY: all setup split compare clean psx-match
 all: compare
 
 setup:
@@ -54,6 +54,11 @@ $(TARGET): build/$(NAME).elf
 
 compare: $(TARGET)
 	@$(PYTHON) tools/compare.py $(CONFIG) $(TARGET)
+
+# Cross-reference with the PSX decomp (needs a built soul-re checkout: build/*.elf and build/*.map).
+PSX ?= $(HOME)/soul-re
+psx-match:
+	$(PYTHON) tools/psx_match.py --psx "$(PSX)" --out config
 
 clean:
 	rm -rf build
