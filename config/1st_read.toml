@@ -185,3 +185,49 @@ name    = "stack"
 start   = 0x8C35BB60
 kind    = "bin"
 section = ".stack"
+
+# ---- SDK libraries (tools/libplace.py -> output) --------------------------------------------------------------
+# Archives in preference order: when two hold the same object, the first wins. The game links libprofiler (not
+# libshinobi), libkamui2 (not _d), libsg_sd2, libsg_mw2k2, libsofdecfx and libcri_adxn: each explains bytes its
+# alternative cannot. The build does not use the output yet; it is the basis for linking the real objects.
+[libraries]
+output = "config/lib_objects.txt"
+archives = [
+  "KATANA/Lib/Gnu/strt1.obj",
+  "KATANA/Lib/Gnu/strt2.obj",
+  "KATANA/Lib/Gnu/systemid.obj",
+  "KATANA/Lib/Gnu/toc.obj",
+  "KATANA/Lib/Gnu/sg_sec.obj",
+  "KATANA/Lib/Gnu/sg_are*.obj",
+  "KATANA/Lib/Gnu/sg_ini.obj",
+  "KATANA/Lib/Gnu/aip.obj",
+  "KATANA/Lib/Gnu/zero.obj",
+  "KATANA/Lib/Gnu/syscalls.obj",
+  "KATANA/Lib/Gnu/close.obj",
+  "KATANA/Lib/Gnu/lock.obj",
+  "KATANA/Lib/Gnu/lseek.obj",
+  "KATANA/Lib/Gnu/open.obj",
+  "KATANA/Lib/Gnu/read.obj",
+  "KATANA/Lib/Gnu/write.obj",
+  "KATANA/Lib/Gnu/libprofiler.a",
+  "KATANA/Lib/Gnu/libkamui2.a",
+  "KATANA/Lib/Gnu/libsg_sd2.a",
+  "KATANA/Lib/Gnu/libsg_mw2k2.a",
+  "KATANA/Lib/Gnu/libsg_mw2.a",
+  "KATANA/Lib/Gnu/libsofdecfx.a",
+  "KATANA/Lib/Gnu/libcri_adxn.a",
+  "KATANA/Lib/Gnu/libcri_lsc.a",
+  "KATANA/Lib/Gnu/libaudio64.a",
+  "KATANA/Lib/Gnu/libsh4nlfzz.a",
+  "KATANA/Lib/Gnu/libshinobi.a",
+  "KATANA/Lib/Gnu/libkamui2_d.a",
+  "KATANA/Lib/Gnu/libsg_sd.a",
+  "KATANA/Lib/Gnu/libsg_mw.a",
+  "KATANA/Lib/Gnu/libsofdec.a",
+  "KATANA/Lib/Gnu/libcri_adxs.a",
+  "~/.local/share/soul-re-dc/gnu/sh-elf/lib/ml/m4-single-only/libc.a",
+  "~/.local/share/soul-re-dc/gnu/sh-elf/lib/ml/m4-single-only/libm.a",
+  "~/.local/share/soul-re-dc/gnu/lib/gcc-lib/sh-elf/2.9-SYSDEV-sh4p2_final-991007/ml/m4-single-only/libgcc.a",
+]
+# Never anchor library sections inside the game code.
+exclude = [["0x8C05AC20", "0x8C12A9E0"]]

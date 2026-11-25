@@ -158,6 +158,9 @@ tools/extract_gdi.py   GD-ROM (.gdi) file extractor
 tools/split.py         config -> build/bin/*.o blobs + build/1st_read.ld
 tools/libmatch.py      locate SDK library objects in the binary (relocation-masked byte match)
 tools/elfobj.py        tiny ELF/ar reader used by libmatch
+tools/libplace.py      place SDK library objects at their addresses -> config/lib_objects.txt (not used by the build yet)
+tools/sh4.py           standalone SH-4 decoder (every opcode round-trips through the SDK as)
+tools/get_objdiff.sh   install a pinned objdiff-cli
 tools/compare.py       SHA-1 check + per-segment diff report
 tools/psx_match.py     match DC functions to the PSX decomp (soul-re), derive file splits
 tools/gen_functions.py config/psx_match.csv -> config/functions.csv (file splits + names)
@@ -165,6 +168,7 @@ tools/gen_c.py         create src/**/*.c INCLUDE_ASM stubs
 tools/gen_asm.py       asm/nonmatchings/**/*.s (run by split.py)
 tools/dctool.sh        run SDK tools under Wine
 config/functions.csv   function table: address, file, name (hand-editable)
+config/lib_objects.txt which SDK library section is linked where, and the externs the libraries use
 src/                   game C sources (INCLUDE_ASM + decompiled functions)
 include/               headers imported from soul-re (Game/**, Libs/SDK.h) + DC common.h, include_asm.h
 tools/import_psx_headers.py  copy soul-re headers into include/ (overlays mapped to DC paths)
