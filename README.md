@@ -74,12 +74,29 @@ Things to know:
 
 ### Memory map (`1ST_READ.BIN` is loaded at `0x8C010000`)
 
-| Range | Contents |
-|---|---|
-| `8C010000`–`8C05AC20` | SHC-built SDK libraries (Shinobi `PSG`/`CSG`/`DSG` sections) and `strt1`/`strt2` |
-| `8C05AC20`–`8C12A9E0` | **Game `.text`** (GCC), about 832 KB |
-| `8C12A9E0`–`8C138100` | GCC-side libraries: audio64, sh4nlfzz, shinobi (GNU parts), libc, libgcc |
-| `8C138100`–`8C35BB64` | `.rodata` and `.data`. `.bss` is not stored in the file. |
+Linked with the SDK's sample movie script (`KATANA/Sample/Movie/mw_km2/usr_shelf.x`). See
+`config/1st_read.toml` for every boundary and where it comes from.
+
+| Range | Section | Contents |
+|---|---|---|
+| `8C010000`–`8C0100A0` | `DSGLH`, `DSGLE` | SHC library-handle tables (strt1 + Shinobi) |
+| `8C0100A0`–`8C055B00` | `PSG` | SHC-built SDK code (Shinobi, Kamui2, CRI, MW) |
+| `8C055B00`–`8C0596A0` | `CSG` | SHC constants; strt1's section table first |
+| `8C0596A0`–`8C05AB00` | `DSG` | SHC initialised data |
+| `8C05AB00`–`8C05AC20` | `.text` | startup: strt1 `start` (entry), strt2 |
+| `8C05AC20`–`8C12A9E0` | `.text` | **game code** (GCC), about 832 KB |
+| `8C12A9E0`–`8C131AEC` | `.text` | GCC-built libraries: audio64, sh4nlfzz, profiler, libc, libm, libgcc |
+| `8C131AEC`–`8C139AEE` | `PSGSFD02`, `PSGSFD01`, `PSGSFD00` | Sofdec decoder sections, placed by ld as orphans |
+| `8C139AF0`–`8C13E352` | `.rodata` | strt2, game (to `8C13C328`), libraries |
+| `8C13E3E0`–`8C150100` | `.data` | strt2, game (to `8C14F940`), libraries; `.ctors`/`.dtors` empty |
+| `8C150100`–`8C2BB770` | `.bss`, `COMMON` | game `.bss`, library `.bss` (`8C1C9B60`), COMMON (`8C1C9F68`) to `_end` |
+| `8C2BB770`–`8C33BB50` | `BSG` | SHC uninitialised data |
+| `8C33BB60`–`8C35BB60` | | 128 KB stack area |
+| `8C35BB60`–`8C35BB64` | `.stack` | 4 bytes (`0xDEADDEAD`): `_stack`, the initial `r15` |
+
+Everything from `.bss` on is zero in the file. It is only there because objcopy fills the gap up to
+`.stack`, so the build links those ranges `NOLOAD`. There is no small data: SH has no gp-relative addressing,
+so `-G` does not apply (the SDK GCC accepts `-G0` and ignores it), and `.sdata`/`.sbss`/`.scommon` are empty.
 
 ### Cross-reference with the PSX decomp
 

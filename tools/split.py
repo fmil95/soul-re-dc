@@ -3,6 +3,7 @@
 
 Writes:
   build/bin/<segment>.o        ELF object wrapping the raw bytes of every `bin` segment
+                               (`bss` segments get a NOLOAD output section and no object)
   asm/nonmatchings/...         one .s per function of every `functions` segment (tools/gen_asm.py)
   build/<name>.ld              linker script placing every segment at its address
   build/<name>.objs            list of object files the link needs (one per line)
@@ -106,6 +107,10 @@ def main():
             if not os.path.exists(obj) or open(obj, "rb").read() != blob:
                 with open(obj, "wb") as f:
                     f.write(blob)
+        elif kind == "bss":
+            # No contents: reserve the range. objcopy -O binary zero-fills it, since .stack follows.
+            ld.append(f"  .seg_{s['name']} 0x{start:08X} (NOLOAD) : {{ . = . + 0x{stop - start:X}; }}")
+            continue
         elif kind == "asm":
             obj = f"build/asm/{s['name']}.o"
         elif kind == "c":

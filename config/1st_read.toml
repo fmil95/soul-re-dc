@@ -1,9 +1,28 @@
 # Segment map for 1ST_READ.BIN (Soul Reaver, NTSC-U v1.000, T36802N, built 1999-12-20)
-# Segments must be contiguous and ordered. `kind`:
-#   bin  - copied verbatim from the ROM (blob, wrapped with tools/bin2elf.py)
-#   asm  - hand-written / generated asm in asm/<name>.s   (future)
-#   c    - compiled from src/<name>.c                      (future)
-# Boundaries come from tools/libmatch.py (KATANA SDK objects located in the binary).
+# Segments must be contiguous and ordered; each ends where the next starts. `kind`:
+#   bin       - copied verbatim from the ROM (blob, wrapped with tools/bin2elf.py)
+#   asm       - hand-written asm in asm/<name>.s
+#   c         - compiled from src/<name>.c
+#   functions - game code, one object per source file (config/functions.csv)
+#   bss       - uninitialised; no bytes of its own. It is in the file only because objcopy zero-fills the gap
+#               up to `.stack`, so it is linked NOLOAD and comes out as zeros.
+# `section` is the output section of the original link.
+#
+# Layout: the game was linked with the SDK's sample movie script (KATANA/Sample/Movie/mw_km2/usr_shelf.x).
+# It is KATANA/Include/sg_shelf.x without the PSGSFD0x sections, so ld 2.9 placed those as orphans after .text.
+# Section order: DSGLH DSGLE P C C32 D D32 R R32 PSG CSG CSG32 DSG DSG32 RSG RSG32 B B32 | .init .text .fini
+# [orphans PSGSFD02 PSGSFD01 PSGSFD00] .rodata .rodata1 | ALIGN(128)+(.&127) | .data .data1 .ctors .dtors .got
+# .sdata | .sbss .scommon .bss COMMON (_end) | BSG BSG32 | .stack at __END_BSG32 + 0x20000.
+#
+# Boundaries come from the startup code's section table (strt1 CSG at 8C055B00, strt2 .rodata at 8C139AF0),
+# libgcc __main (__ctors/__dtors), and SDK library objects located in the binary (config/lib_objects.txt).
+# Empty sections (no segment needed): P, C, C32, D, D32, R, R32 (all at 8C0100A0), CSG32, DSG32, RSG, RSG32,
+# B, B32 (8C05AB00), .init, .fini, .rodata1, .data1, .ctors/.dtors (8C150100), .got, .sdata, .sbss/.scommon,
+# BSG32 (8C33BB60). PSGSFD03 is not linked.
+#
+# Small data: SH has no gp-relative addressing, so there is no -G option to match. The SDK GCC accepts -G0/-G8
+# silently and they change nothing. .sdata/.sbss/.scommon are only in the script for other targets, and are
+# empty here.
 
 [binary]
 name  = "1ST_READ"
@@ -13,32 +32,156 @@ size  = 3455844
 sha1  = "92b051a490599e062a19b5cbc4ecab83f26428f3"
 katana = "KATANA"   # SDK location, used to name SDK library functions referenced from game code
 
-# SHC-compiled SDK libraries (Shinobi/Kamui2/CRI/MW sections PSG/CSG/DSG...) + strt1/strt2.
+# ---- SHC-compiled SDK libraries (Shinobi, Kamui2, CRI, MW) -------------------------------------------------
+# Library-handle tables: strt1 header + entries, then strt1's end marker.
 [[segment]]
-name  = "sdk_shc"
-start = 0x8C010000
-kind  = "bin"
-section = ".sdk_shc"
+name    = "shc_dsglh"
+start   = 0x8C010000
+kind    = "bin"
+section = "DSGLH"
 
-# Game code, GCC 2.9-SYSDEV -ml -m4-single-only. Nothing from the SDK matches here.
+[[segment]]
+name    = "shc_dsgle"
+start   = 0x8C010080
+kind    = "bin"
+section = "DSGLE"
+
+# SHC code.
+[[segment]]
+name    = "shc_psg"
+start   = 0x8C0100A0
+kind    = "bin"
+section = "PSG"
+
+# SHC constants. Starts with strt1's section table (__DSGLH_BGN at 8C055B00).
+[[segment]]
+name    = "shc_csg"
+start   = 0x8C055B00
+kind    = "bin"
+section = "CSG"
+
+# SHC initialised data (used in place: __DSG_ROM == __DSG_BGN range 8C0596A0-8C05AB00).
+[[segment]]
+name    = "shc_dsg"
+start   = 0x8C0596A0
+kind    = "bin"
+section = "DSG"
+
+# ---- .text --------------------------------------------------------------------------------------------------
+# Startup: strt1 `start` (entry point, sets r15 = _stack), then strt2 (8C05AB44).
+[[segment]]
+name    = "text_startup"
+start   = 0x8C05AB00
+kind    = "bin"
+section = ".text"
+
+# Game code, GCC 2.9-SYSDEV -ml -m4-single-only -O2 -fno-delayed-branch.
 # One object per source file, in link order, as listed in config/functions.csv (src/<file>.c with
 # INCLUDE_ASM for every function not yet decompiled).
 [[segment]]
-name  = "game_text"
-start = 0x8C05AC20
-kind  = "functions"
+name      = "game_text"
+start     = 0x8C05AC20
+kind      = "functions"
 functions = "config/functions.csv"
 
-# GCC-side libraries: audio64, sh4nlfzz, shinobi (gnu parts), libc, libgcc.
+# GCC-built libraries: audio64, sh4nlfzz, profiler (GNU parts), libc, libm, libgcc. _etext = 8C131AEC.
 [[segment]]
-name  = "lib_text"
-start = 0x8C12A9E0
-kind  = "bin"
+name    = "lib_text"
+start   = 0x8C12A9E0
+kind    = "bin"
 section = ".text"
 
-# .rodata, .data (game + libraries). .bss is not stored in the file.
+# ---- Sofdec orphan sections (not in the linker script; ld put them after .text in this order) ----------------
 [[segment]]
-name  = "data"
-start = 0x8C138100
-kind  = "bin"
+name    = "sofdec_psgsfd02"
+start   = 0x8C131AEC
+kind    = "bin"
+section = "PSGSFD02"
+
+# 0x612 bytes of zeros (mpvasec) + 2 bytes of alignment for PSGSFD00.
+[[segment]]
+name    = "sofdec_psgsfd01"
+start   = 0x8C137AEC
+kind    = "bin"
+section = "PSGSFD01"
+
+[[segment]]
+name    = "sofdec_psgsfd00"
+start   = 0x8C138100
+kind    = "bin"
+section = "PSGSFD00"
+
+# ---- .rodata ------------------------------------------------------------------------------------------------
+# strt2 (0x2E bytes: __D_ROM/__B_BGN tables, build string), then game .rodata.
+[[segment]]
+name    = "rodata"
+start   = 0x8C139AF0
+kind    = "bin"
+section = ".rodata"
+
+# Library .rodata (audio64 acdma first, libc syscalls last; ends 8C13E352), then the zero gap left by
+# ALIGN(128) + (. & 127) and .data's 32-byte alignment.
+[[segment]]
+name    = "lib_rodata"
+start   = 0x8C13C328
+kind    = "bin"
+section = ".rodata"
+
+# ---- .data --------------------------------------------------------------------------------------------------
+# strt2 .data (4 bytes, a pointer to its build string), then game .data.
+[[segment]]
+name    = "data"
+start   = 0x8C13E3E0
+kind    = "bin"
 section = ".data"
+
+# Library .data (audio64 acdma first, libc mallocr last). .data ends at 8C150100 = __ctors = __dtors = _edata.
+[[segment]]
+name    = "lib_data"
+start   = 0x8C14F940
+kind    = "bin"
+section = ".data"
+
+# ---- uninitialised ------------------------------------------------------------------------------------------
+# Game .bss (static variables), __bss_start = 8C150100.
+[[segment]]
+name    = "bss"
+start   = 0x8C150100
+kind    = "bss"
+section = ".bss"
+
+# Library .bss (audio64 acerror first, libc syscalls last).
+[[segment]]
+name    = "lib_bss"
+start   = 0x8C1C9B60
+kind    = "bss"
+section = ".bss"
+
+# COMMON: uninitialised non-static globals (GCC emits them as .comm), game and libraries; ld orders them
+# itself, so this is one range. Ends at _end = 8C2BB770.
+[[segment]]
+name    = "common"
+start   = 0x8C1C9F68
+kind    = "bss"
+section = "COMMON"
+
+# SHC uninitialised data (__BSG_BGN-__BSG_END = 8C2BB770-8C33BB50).
+[[segment]]
+name    = "shc_bsg"
+start   = 0x8C2BB770
+kind    = "bss"
+section = "BSG"
+
+# Alignment, empty BSG32 (8C33BB60), and the 128 KB the script reserves for the stack.
+[[segment]]
+name    = "stack_area"
+start   = 0x8C33BB50
+kind    = "bss"
+section = ".stack_area"
+
+# .stack at __END_BSG32 + 0x20000 = _stack, the initial r15: 4 bytes (0xDEADDEAD), the last bytes of the file.
+[[segment]]
+name    = "stack"
+start   = 0x8C35BB60
+kind    = "bin"
+section = ".stack"
