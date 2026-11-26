@@ -1,5 +1,5 @@
-/* DC 8C05AC20, 99 functions. PSX: src/Game/CAMERA.c */
 #include "Game/CAMERA.h"
+#include "Game/MATH3D.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_CalculateViewVolumeNormals);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_CalcVVClipInfo);
@@ -18,12 +18,18 @@ INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_SetZRotation);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_LengthSVector);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_SetValue);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_AngleDifference);
-INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_SignedAngleDifference);
+
+short CAMERA_SignedAngleDifference(short angle0, short angle1)
+{
+    return AngleDiff(angle1, angle0);
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_QueryMode);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_SetMaxVel);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_SetTarget);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_CalcPosition);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_SetFocus);
+
 void CAMERA_Lock(Camera *camera, long lock)
 {
     camera->lock |= lock;
@@ -33,6 +39,7 @@ void CAMERA_Unlock(Camera *camera, long unlock)
 {
     camera->lock &= ~unlock;
 }
+
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_SetSmoothValue);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_SetTimer);
 INCLUDE_ASM("asm/nonmatchings/Game/CAMERA", CAMERA_Adjust_tilt);
