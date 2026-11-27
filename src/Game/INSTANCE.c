@@ -25,7 +25,12 @@ INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", INSTANCE_GetSplineFrameNumber);
 INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", INSTANCE_ProcessFunctions);
 INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", INSTANCE_BirthObject);
 INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", func_8C08C620);
-INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", INSTANCE_BuildStaticShadow);
+
+void INSTANCE_BuildStaticShadow(Instance *instance)
+{
+    (void)instance;
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", INSTANCE_DefaultInit);
 INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", INSTANCE_PlainDeath);
 INCLUDE_ASM("asm/nonmatchings/Game/INSTANCE", INSTANCE_KillInstance);
