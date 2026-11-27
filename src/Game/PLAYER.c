@@ -27,7 +27,18 @@ long PLAYER_OkToLookAround(Instance *instance)
     }
 }
 
-INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", PLAYER_SetLookAround);
+void PLAYER_SetLookAround(Instance *instance)
+{
+    if (INSTANCE_Query(instance, queryWhatAmI) & 0x1)
+    {
+        RAZIEL_SetLookAround(instance);
+    }
+    else
+    {
+        MONAPI_SetLookAround(instance);
+    }
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", PLAYER_ReSetLookAround);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", func_8C09F6A0);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", func_8C09F6C0);
