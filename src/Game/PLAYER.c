@@ -1,7 +1,17 @@
-/* DC 8C09F560, 7 functions. PSX: src/Game/PLAYER.c */
 #include "Game/PLAYER.h"
 
-INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", PLAYER_TurnHead);
+void PLAYER_TurnHead(Instance *instance, short *rotx, short *rotz, GameTracker *gameTracker)
+{
+    if (INSTANCE_Query(instance, queryWhatAmI) & 0x1)
+    {
+        RAZIEL_TurnHead(instance, rotx, rotz, gameTracker);
+    }
+    else
+    {
+        MONAPI_TurnHead(instance, rotx, rotz, gameTracker);
+    }
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", PLAYER_OkToLookAround);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", PLAYER_SetLookAround);
 INCLUDE_ASM("asm/nonmatchings/Game/PLAYER", PLAYER_ReSetLookAround);
