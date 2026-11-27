@@ -1,4 +1,3 @@
-/* DC 8C064140, 47 functions. PSX: src/Game/COLLIDE.c */
 #include "Game/COLLIDE.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", func_8C064140);
@@ -14,7 +13,12 @@ INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", COLLIDE_WithinXZBounds);
 INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", COLLIDE_WithinXYBounds);
 INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", COLLIDE_LineWithBoxFace);
 INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", COLLIDE_IntersectLineAndBox);
-INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", COLLIDE_PointAndTerrain);
+
+TFace *COLLIDE_PointAndTerrain(Terrain *terrain, PCollideInfo *pcollideInfo, LCollideInfo *lcol)
+{
+    return COLLIDE_PointAndTerrainFunc(terrain, pcollideInfo, 0, NULL, 0, 0, lcol);
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", COLLIDE_PointAndTerrainFunc);
 INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", COLLIDE_PointAndHFace);
 INCLUDE_ASM("asm/nonmatchings/Game/COLLIDE", COLLIDE_PointAndInstance);

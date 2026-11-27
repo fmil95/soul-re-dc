@@ -7,7 +7,7 @@ int menu_data_size()
 
 void menu_initialize(menu_t *menu, void *opaque)
 {
-    memset(menu, 0, sizeof(menu_t));
+    *menu = (menu_t){0};
 
     menu->nmenus = -1;
 
