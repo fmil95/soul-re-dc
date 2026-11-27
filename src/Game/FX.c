@@ -91,7 +91,12 @@ INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_MakeHitFX);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_ContinueLightning);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_SetReaverInstance);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_SoulReaverBlade);
-INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_ReaverBladeInit);
+
+void FX_ReaverBladeInit()
+{
+    
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_SoulReaverWinding);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_UpdateInstanceWaterSplit);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_GetPlaneEquation);
