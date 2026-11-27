@@ -1,8 +1,13 @@
-/* DC 8C088120, 6 functions. PSX: src/Game/GENERIC.c */
 #include "Game/GENERIC.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/GENERIC", GenericInit);
-INCLUDE_ASM("asm/nonmatchings/Game/GENERIC", GenericCollide);
+
+void GenericCollide(Instance instance, GameTracker gameTracker)
+{
+    (void)instance;
+    (void)gameTracker;
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/GENERIC", GenericProcess);
 INCLUDE_ASM("asm/nonmatchings/Game/GENERIC", GenericQuery);
 INCLUDE_ASM("asm/nonmatchings/Game/GENERIC", GenericMessage);

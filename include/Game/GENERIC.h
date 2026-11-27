@@ -5,7 +5,7 @@
 
 unsigned long GenericQuery(Instance *instance, unsigned long query);
 void GenericInit(Instance *instance, GameTracker *gameTracker);
-void GenericCollide();
+void GenericCollide(Instance instance, GameTracker gameTracker);
 void GenericProcess(Instance *instance, GameTracker *gameTracker);
 void GenericMessage(Instance *instance, unsigned long message, unsigned long data);
 void GenericRelocateTune(Object *object, long offset);
