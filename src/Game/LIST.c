@@ -14,7 +14,23 @@ void LIST_InsertFunc(NodeType *list, NodeType *node)
 }
 
 INCLUDE_ASM("asm/nonmatchings/Game/LIST", LIST_DeleteFunc);
-INCLUDE_ASM("asm/nonmatchings/Game/LIST", LIST_GetFunc);
+
+NodeType *LIST_GetFunc(NodeType *list)
+{
+    NodeType *next; // not from PS1 SYM
+
+    next = list->next;
+
+    if (next != NULL)
+    {
+        LIST_DeleteFunc(next);
+
+        return next;
+    }
+
+    return NULL;
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/LIST", func_8C08F5E0);
 INCLUDE_ASM("asm/nonmatchings/Game/LIST", func_8C08F620);
 INCLUDE_ASM("asm/nonmatchings/Game/LIST", func_8C08F6A0);
