@@ -1,7 +1,18 @@
-/* DC 8C08F520, 9 functions. PSX: src/Game/LIST.c */
 #include "Game/LIST.h"
 
-INCLUDE_ASM("asm/nonmatchings/Game/LIST", LIST_InsertFunc);
+void LIST_InsertFunc(NodeType *list, NodeType *node)
+{
+    node->prev = list;
+    node->next = list->next;
+
+    if (list->next != NULL)
+    {
+        list->next->prev = node;
+    }
+
+    list->next = node;
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/LIST", LIST_DeleteFunc);
 INCLUDE_ASM("asm/nonmatchings/Game/LIST", LIST_GetFunc);
 INCLUDE_ASM("asm/nonmatchings/Game/LIST", func_8C08F5E0);
