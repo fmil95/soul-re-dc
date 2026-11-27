@@ -5,7 +5,15 @@ int menu_data_size()
     return sizeof(menu_t);
 }
 
-INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENU", menu_initialize);
+void menu_initialize(menu_t *menu, void *opaque)
+{
+    memset(menu, 0, sizeof(menu_t));
+
+    menu->nmenus = -1;
+
+    menu->opaque = opaque;
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENU", menu_format);
 INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENU", menu_set);
 INCLUDE_ASM("asm/nonmatchings/Game/MENU/MENU", menu_push);
