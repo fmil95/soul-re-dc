@@ -1,10 +1,15 @@
-/* DC 8C083DA0, 47 functions. PSX: src/Game/GAMELOOP.c */
 #include "Game/GAMELOOP.h"
+#include "Game/EVENT.h"
 
 INCLUDE_ASM("asm/nonmatchings/Game/GAMELOOP", GAMELOOP_AllocStaticMemory);
 INCLUDE_ASM("asm/nonmatchings/Game/GAMELOOP", GAMELOOP_InitGameTracker);
 INCLUDE_ASM("asm/nonmatchings/Game/GAMELOOP", GAMELOOP_SystemInit);
-INCLUDE_ASM("asm/nonmatchings/Game/GAMELOOP", GAMELOOP_ResetGameStates);
+
+void GAMELOOP_ResetGameStates()
+{
+    EVENT_Init();
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/GAMELOOP", GAMELOOP_ClearGameTracker);
 INCLUDE_ASM("asm/nonmatchings/Game/GAMELOOP", func_8C0840C0);
 INCLUDE_ASM("asm/nonmatchings/Game/GAMELOOP", GAMELOOP_CalcGameTime);
