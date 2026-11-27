@@ -99,7 +99,17 @@ INCLUDE_ASM("asm/nonmatchings/Game/FX", func_8C07FBA0);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_DoInstancePowerRing);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_UpdatePowerRing);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_UpdateInstanceSplitRing);
-INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_UpdateGlowEffect);
+
+void FX_UpdateGlowEffect(FXGlowEffect *effect, FXTracker *fxTracker)
+{
+    (void)fxTracker;
+
+    if (effect->lifeTime == 0)
+    {
+        FX_DeleteGeneralEffect((FXGeneralEffect *)effect);
+    }
+}
+
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_InsertGeneralEffect);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_DeleteGeneralEffect);
 INCLUDE_ASM("asm/nonmatchings/Game/FX", FX_DoInstanceOneSegmentGlow);
