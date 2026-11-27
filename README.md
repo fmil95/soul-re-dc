@@ -1,4 +1,4 @@
-# soul-re-dc
+# Soul Reaverse Dreamcasted
 
 Matching decompilation of **Legacy of Kain: Soul Reaver** for the Sega Dreamcast
 (NTSC-U v1.000, product T36802N, IP.BIN date 1999-12-20).
